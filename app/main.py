@@ -105,25 +105,26 @@ def getClosestFood(potentialMove, data):
     foodDirection = []
     safeFoodDirection = []
     print("closestFood:", closestFood, "myLocation", myLocation)
-    if closestFood['y'] - myLocation['y'] < 0:
-        foodDirection.append('up')
-    elif closestFood['y'] - myLocation['y'] > 0:
-        foodDirection.append('down')
+    if len(closestFood) > 0:
+        if closestFood['y'] - myLocation['y'] < 0:
+            foodDirection.append('up')
+        elif closestFood['y'] - myLocation['y'] > 0:
+            foodDirection.append('down')
 
-    if closestFood['x'] - myLocation['x'] < 0:
-        foodDirection.append('left')
-    elif closestFood['x'] - myLocation['x'] > 0:
-        foodDirection.append('right')
-    print("Potential Move: ", potentialMove, "foodDirection: ", foodDirection)
+        if closestFood['x'] - myLocation['x'] < 0:
+            foodDirection.append('left')
+        elif closestFood['x'] - myLocation['x'] > 0:
+            foodDirection.append('right')
+        print("Potential Move: ", potentialMove, "foodDirection: ", foodDirection)
 
 
 
-    for safeDirections in potentialMove.keys():
-        print(safeDirections)
-        if safeDirections in foodDirection:
-            safeFoodDirection.append(safeDirections)
+        for safeDirections in potentialMove.keys():
+            print(safeDirections)
+            if safeDirections in foodDirection:
+                safeFoodDirection.append(safeDirections)
 
-    return safeFoodDirection
+        return safeFoodDirection
 
 @bottle.post('/move')
 def move():
