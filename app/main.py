@@ -93,8 +93,8 @@ def getClosestFood(potentialMove, data):
     closestDistance = 100
 
     for berry in data['board']['food']:
-        distanceX = abs(myLocation[1] - berry[1])
-        distanceY = abs(myLocation[0] - berry[0])
+        distanceX = abs(myLocation['x'] - berry['x'])
+        distanceY = abs(myLocation['y'] - berry['y'])
 
         actualDistance = distanceX + distanceY
 
@@ -104,7 +104,6 @@ def getClosestFood(potentialMove, data):
 
     foodDirection = []
     safeFoodDirection = []
-    print('closest food: ', closestFood, 'myLocation: ', myLocation)
     if closestFood['y'] - myLocation['y'] < 0:
         foodDirection.append('up')
     elif closestFood['y'] - myLocation['y'] > 0:
