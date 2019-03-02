@@ -90,14 +90,14 @@ def isSafeSpace(adjacentCells, data):
 
 def getClosestFood(potentialMove, data):
     closestFood = {}
-    closestDistance = 100
+    closestDistance = 150
 
     for berry in data['board']['food']:
         distanceX = abs(myLocation['x'] - berry['x'])
         distanceY = abs(myLocation['y'] - berry['y'])
 
         actualDistance = distanceX + distanceY
-
+        print("Actual Distance: ", actualDistance, "distanceX: ", distanceX, "distanceY: ", distanceY)
         if actualDistance < closestDistance:
             closestDistance = actualDistance
             closestFood = berry
