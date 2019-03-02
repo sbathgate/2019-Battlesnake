@@ -31,8 +31,6 @@ def ping():
 
 @bottle.post('/start')
 def start():
-    global boardWidth
-    global boardHeight
 
     data = bottle.request.json
 
@@ -44,9 +42,7 @@ def start():
     """
     print(json.dumps(data))
 
-    boardWidth = data['board']['width']
-    boardHeight = data['board']['height']
-    gameID = data['game']['id']
+
     color = "#50C878"
 
     return start_response(color)
@@ -139,7 +135,14 @@ def move():
             snake AI must choose a direction to move in.
     """
     print(json.dumps(data))
+    global boardWidth
+    global boardHeight
     global myLocation
+
+    boardWidth = data['board']['width']
+    boardHeight = data['board']['height']
+    gameID = data['game']['id']
+
     myLocation = getMyLocation(data)
     adjacentCells = getAdjacentCells(myLocation, data)
     potentialMove = isSafeSpace(adjacentCells, data)
