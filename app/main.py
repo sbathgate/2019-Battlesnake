@@ -104,6 +104,7 @@ def getClosestFood(potentialMove, data):
 
     foodDirection = []
     safeFoodDirection = []
+    print("closestFood:", closestFood, "myLocation", myLocation)
     if closestFood['y'] - myLocation['y'] < 0:
         foodDirection.append('up')
     elif closestFood['y'] - myLocation['y'] > 0:
