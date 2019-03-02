@@ -153,6 +153,7 @@ def move():
     if findFood:
         direction = random.choice(findFood)
     else:
+        print("Used Potential Move:", potentialMove.keys())
         direction = random.choice(potentialMove.keys())
 
     if len(direction) == 0:
