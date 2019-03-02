@@ -100,7 +100,7 @@ def getClosestFood(potentialMove, data):
         distanceX = abs(myLocation['x'] - berry['x'])
         distanceY = abs(myLocation['y'] - berry['y'])
 
-        actualDistance = math.sqrt( pow(distanceX, 2) + pow(distanceY, 2))
+        actualDistance = distanceX + distanceY
 
         if actualDistance < closestDistance:
             closestDistance = actualDistance
