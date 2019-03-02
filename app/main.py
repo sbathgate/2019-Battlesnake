@@ -147,7 +147,7 @@ def move():
 
     print(findFood)
 
-    if len(findFood) > 0:
+    if len(findFood) >= 1:
         direction = random.choice(findFood)
     else:
         direction = random.choice(potentialMove.keys())
