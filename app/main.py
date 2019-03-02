@@ -31,7 +31,8 @@ def ping():
 
 @bottle.post('/start')
 def start():
-    global boardWidth, boardHeight
+    global boardWidth
+    global boardHeight
 
     data = bottle.request.json
 
@@ -150,7 +151,7 @@ def move():
         direction = random.choice(findFood)
     else:
         direction = random.choice(potentialMove.keys())
-        
+
     if len(direction) == 0:
         direction = ['up', 'down', 'left','right']
 
