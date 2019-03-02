@@ -2,7 +2,6 @@ import json
 import os
 import random
 import bottle
-import math
 
 from api import ping_response, start_response, move_response, end_response
 
@@ -144,9 +143,14 @@ def move():
     adjacentCells = getAdjacentCells(myLocation, data)
     potentialMove = isSafeSpace(adjacentCells, data)
     findFood = getClosestFood(potentialMove, data)
-#    huntFood = pursueFood(potentialMove, data)
+
     print(findFood)
-    direction = random.choice(findFood)
+
+    if len(findFood) > 0
+        direction = random.choice(findFood)
+    else:
+        direction = random.choice(potentialMove.keys())
+        
     if len(direction) == 0:
         direction = ['up', 'down', 'left','right']
 
