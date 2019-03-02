@@ -85,7 +85,6 @@ def isSafeSpace(adjacentCells, data):
 
         if safeSpace == True:
             potentialMove[direction] = coordinate # Adds direction to potentialMove
-    print(potentialMove)
     return potentialMove
 
 def getClosestFood(potentialMove, data):
@@ -97,14 +96,12 @@ def getClosestFood(potentialMove, data):
         distanceY = abs(myLocation['y'] - berry['y'])
 
         actualDistance = distanceX + distanceY
-        print("Actual Distance: ", actualDistance, "distanceX: ", distanceX, "distanceY: ", distanceY)
         if actualDistance < closestDistance:
             closestDistance = actualDistance
             closestFood = berry
 
     foodDirection = []
     safeFoodDirection = []
-    print("closestFood:", closestFood, "myLocation", myLocation)
     if len(closestFood) > 0:
         if closestFood['y'] - myLocation['y'] < 0:
             foodDirection.append('up')
@@ -115,12 +112,10 @@ def getClosestFood(potentialMove, data):
             foodDirection.append('left')
         elif closestFood['x'] - myLocation['x'] > 0:
             foodDirection.append('right')
-        print("Potential Move: ", potentialMove, "foodDirection: ", foodDirection)
 
 
 
         for safeDirections in potentialMove.keys():
-            print(safeDirections)
             if safeDirections in foodDirection:
                 safeFoodDirection.append(safeDirections)
 
@@ -153,7 +148,6 @@ def move():
     if findFood:
         direction = random.choice(findFood)
     else:
-        print("Used Potential Move:", potentialMove.keys())
         direction = random.choice(potentialMove.keys())
 
     if len(direction) == 0:
