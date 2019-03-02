@@ -150,7 +150,7 @@ def move():
     potentialMove = isSafeSpace(adjacentCells, data)
     findFood = getClosestFood(potentialMove, data)
 
-    if len(findFood) > 0:
+    if findFood:
         direction = random.choice(findFood)
     else:
         direction = random.choice(potentialMove.keys())
