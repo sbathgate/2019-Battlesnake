@@ -70,8 +70,10 @@ def isSafeSpace(adjacentCells, data):
         # Check adjacentCells are within board
         if coordinate[0] < 0 or coordinate[0] >= boardHeight: # checking if move 'up' or 'down' is a wall
             safeSpace = False
+            print("There is a wall above or below")
         elif coordinate[1] < 0 or coordinate[1] >= boardWidth: # checking if move 'left' or 'right' is a wall
             safeSpace = False
+            print("There is a wall to the left or right")
 
         # Check adjacentCells for another snake
         for snake in data['board']['snakes']:
@@ -81,10 +83,12 @@ def isSafeSpace(adjacentCells, data):
             for snakePart in snake['body']:
                 if snakePart.values() == coordinate:
                     safeSpace = False
+                    print("There is a snake part in cell: ", snakePart.values())
                     break
 
         if safeSpace == True:
             potentialMove[direction] = coordinate # Adds direction to potentialMove
+            print("Cell: ", potentialMove[direction], " is safe.")
     return potentialMove
 
 def getClosestFood(potentialMove, data):
@@ -99,26 +103,32 @@ def getClosestFood(potentialMove, data):
         if actualDistance < closestDistance:
             closestDistance = actualDistance
             closestFood = berry
+            print("The closest food is in cell: ", berry)
 
     foodDirection = []
     safeFoodDirection = []
     if len(closestFood) > 0:
         if closestFood['y'] - myLocation['y'] < 0:
             foodDirection.append('up')
+            print("The food is up, and to the ")
         elif closestFood['y'] - myLocation['y'] > 0:
             foodDirection.append('down')
+            print("The food is down, and to the ")
 
         if closestFood['x'] - myLocation['x'] < 0:
             foodDirection.append('left')
+            print("left.")
         elif closestFood['x'] - myLocation['x'] > 0:
             foodDirection.append('right')
+            print("right.")
 
 
 
         for safeDirections in potentialMove.keys():
             if safeDirections in foodDirection:
                 safeFoodDirection.append(safeDirections)
-
+                print("Direction: ", safeDirections, " has been added to safeFoodDirection")
+        print("Safe food directions: ", safeFoodDirection)
         return safeFoodDirection
 
 @bottle.post('/move')
@@ -135,23 +145,31 @@ def move():
     global boardWidth
     global boardHeight
     global myLocation
+    direction = []
 
     boardWidth = data['board']['width']
     boardHeight = data['board']['height']
     gameID = data['game']['id']
 
     myLocation = getMyLocation(data)
+    print("myLocation: ", myLocation)
     adjacentCells = getAdjacentCells(myLocation, data)
+    print("adjacentCells: ", adjacentCells)
     potentialMove = isSafeSpace(adjacentCells, data)
+    print("potentialMove: ", potentialMove)
     findFood = getClosestFood(potentialMove, data)
+    print("findFood: ", findFood)
 
     if findFood:
         direction = random.choice(findFood)
+        print("Direction to food: ", direction)
     else:
         direction = random.choice(potentialMove.keys())
+        print("Direction in potentialMove: ", direction)
 
     if len(direction) == 0:
         direction = ['up', 'down', 'left','right']
+        print("Direction length 0: ", direction)
 
     return move_response(direction)
 
