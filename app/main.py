@@ -93,7 +93,7 @@ def isSafeSpace(adjacentCells, data):
             print("Cell: ", potentialMove[direction], " is safe.")
     return potentialMove
 
-def getClosestFood(potentialMove, myLocation, data):
+def getClosestFood(potentialMove, data):
     closestFood = {}
     closestDistance = 150
 
@@ -145,7 +145,8 @@ def move():
     """
     print(json.dumps(data))
     direction = []
-
+    global myLocation
+    
     gameID = data['game']['id']
 
     myLocation = getMyLocation(data)
@@ -154,7 +155,7 @@ def move():
     print("adjacentCells: ", adjacentCells)
     potentialMove = isSafeSpace(adjacentCells, data)
     print("potentialMove: ", potentialMove)
-    findFood = getClosestFood(potentialMove, myLocation, data)
+    findFood = getClosestFood(potentialMove, data)
     print("findFood: ", findFood)
 
     if findFood:
