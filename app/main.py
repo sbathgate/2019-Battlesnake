@@ -63,6 +63,8 @@ def getAdjacentCells(myLocation, data):
     return adjacent
 
 def isSafeSpace(adjacentCells, data):
+    boardWidth = data['board']['width']
+    boardHeight = data['board']['height']
     potentialMove = {}
     for direction, coordinate in adjacentCells.items():
         safeSpace = True
@@ -142,13 +144,8 @@ def move():
             snake AI must choose a direction to move in.
     """
     print(json.dumps(data))
-    global boardWidth
-    global boardHeight
-    global myLocation
     direction = []
 
-    boardWidth = data['board']['width']
-    boardHeight = data['board']['height']
     gameID = data['game']['id']
 
     myLocation = getMyLocation(data)
