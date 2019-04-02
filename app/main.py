@@ -43,7 +43,9 @@ def start():
     print(json.dumps(data))
 
 
-    color = "#50C878"
+    color = "#50C878",
+    headType = "evil"
+    tailType = "hook"
 
     return start_response(color)
 
@@ -146,7 +148,7 @@ def move():
     print(json.dumps(data))
     direction = []
     global myLocation
-    
+
     gameID = data['game']['id']
 
     myLocation = getMyLocation(data)
