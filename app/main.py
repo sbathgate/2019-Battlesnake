@@ -44,11 +44,12 @@ def start():
 
 
     color = "#50C878"
-    headType = "evil"
+    headType = "tongue"
     tailType = "hook"
 
     return start_response(color)
-
+    return start_response(headType)
+    return start_response(tailType)
 
 def getMyLocation(data):
   return data['you']['body'][0]
